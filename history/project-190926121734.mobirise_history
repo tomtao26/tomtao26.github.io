@@ -4,7 +4,7 @@
     "currentPage": "index.html",
     "versionFirst": "4.0.14",
     "uniqCompNum": 20,
-    "versionPublish": "4.10.15",
+    "versionPublish": "4.7.2",
     "theme": {
       "name": "mobirise4",
       "title": "Mobirise 4",
@@ -35,8 +35,7 @@
       ]
     },
     "path": "@PROJECT_PATH@",
-    "screenshot": "screenshot.png",
-    "siteFonts": []
+    "screenshot": "screenshot.png"
   },
   "pages": {
     "index.html": {
