@@ -36,7 +36,9 @@
     },
     "path": "@PROJECT_PATH@",
     "screenshot": "screenshot.png",
-    "siteFonts": []
+    "siteFonts": [],
+    "publishType": "local",
+    "publishPath": "file:///C:/Users/taoyi/Documents/GitHub/tomtao26.github.io"
   },
   "pages": {
     "index.html": {
