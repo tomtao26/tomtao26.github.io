@@ -1,0 +1,115 @@
+---
+layout: page
+title: "Section 1: Build Android and Inside Dalvik"
+---
+<!--
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Sec 1: Build Android and Inside Dalvik</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="labs.css" 
+type=text/css rel=stylesheet>
+-->
+<body>
+
+<h2>Part 3: INTRODUCE TO DALVIK</h2>
+
+<h3>Source Code Hierarchy</h3>
+
+     <p>Here is short version of what you will find when you download the Android source. I will leave out some minor directories and dig deeper into a couple of the important ones. Basically what you will get (based on the current Ice Cream Sandwich release), in alphabetical order: (<b>Bold</b> projects are that we will hack in the following Labs.)</p>
+
+<ul>
+   <li> Bionic - the C-runtime for Android. Note that Android is not using glibc like most Linux distributions. Instead the c-library is called bionic and is based mostly on BSD-derived sources. In this folder you will find the source for the c-library, math and other core runtime libraries.</li><br> 
+   <li> Bootable - boot and startup related code. Some of it is legacy, the fastboot protocol info could be interesting since it is implemented by boot loaders in a number of devices such as the Nexus ones.</li><br>
+   <li> Build - the build system implementation including all the core make file templates. An important file here is the envsetup.sh script that will help you a lot when working with the platform source. Running this script in a shell will enable commands to setup environment variables, build specific modules and grep in source code files.</li><br>
+   <li> Cts - the compatability tests. The test suite to ensure that a build complies with the Android specification.</li><br>
+   <li> <b>Dalvik</b> - the source code for the implementation of the Dalvik Virtual Machine</li><br>
+   <li> Development - projects related to development such as the source code for the sdk and ndk tools. Normally not a folder you touch when working with the platform for a target.</li><br>
+   <li> Device - product specific code for different devices. This is the place to find hardware modules for the different Nexus devices, build configurations and more.</li><br>
+   <li> External - contains source code for all external open source projects such as SQLite, Freetype and webkit.</li><br>
+   <li> Frameworks - this folder is essential to Android since it contains the sources for the framework. Here you will find the implementation of key services such as the System Server with the Package- and Activity managers. A lot of the mapping between the java application APIs and the native libraries is also done here.</li><br>
+   <li> Hardware - hardware related source code such as the Android hardware abstraction layer specification and implementation. This folder also contains the reference radio interface layer (to communicate with the modem side) implementation.</li><br>
+   <li> (Kernel) - not part of the default source download but you can get access to this code either by downloading it manually or by adding the repository to the repo tool. Contains the sources for the Android version of the Linux kernel.</li><br>
+   <li> Out - the build output will be placed here after you run make. The folder structure is out/target/product/. In the default build for the emulator the output will be placed in out/target/product/generic. This is where you will find the images used by the emulator to start (or to be downloaded and flashed to a device if you are building for a hardware target).</li><br>
+   <li> Packages - contains the source code for the default applications such as contacts, calendar, browser.</li><br>
+   <li> Prebuilt - contains files that are distributed in binary form for convenience. Examples include the cross compilations toolchains for different development machines.</li><br>
+   <li> System - source code files for the core Android system. That is the minimal Linux system that is started before the Dalvik VM and any java based services are enabled. This includes the source code for the init process and the default init.rc script that provide the dynamic configuration of the platform.</li><br>
+</ul>
+
+     <!--Beyond the above you also have the hidden .repo directory that contains the source for the repo utility. It also holds the manifest specifying what git repositories you want to track for this Android source project. If you have your own additions you could automatically track them by adding a local manifest here.
+     For modifications of the platform framework there are some instructions available in the device/sample folder of the source code tree. That will show you how to add APIs to Android without having to modify the core framework.-->
+<p> (The description above comes from <a href="http://stackoverflow.com/questions/9046572/how-to-understand-the-directory-structure-of-android-root-tree">StackOverflow Thread</a>.)</p>
+<p> In our lab we focus on the Dalvik VM's design and implementation. Other than that, we do not touch any other parts, such as framework or kernel.</p>
+
+<h3>Execution Mode</h3>
+
+<p>
+The current implementation of the Dalvik VM includes three distinct interpreter cores. These are referred to as "fast", "portable", and "debug". The "fast" interpreter is optimized for the current platform, and might consist of hand-optimized assembly routines. In contrast, the "portable" interpreter is written in C and expected to run on a broad range of platforms. The "debug" interpreter is a variant of "portable" that includes support for profiling and single-stepping.
+</p>
+<p>
+The VM allows you to choose between "fast" and "portable" with an extended form of the -Xint argument. The value of this argument can be set through the dalvik.vm.execution-mode system property.
+</p>
+<p>
+To select the "portable" interpreter, you would use:
+<pre>
+  adb shell setprop dalvik.vm.execution-mode int:portable
+</pre>
+If the property is not specified, the most appropriate interpreter will be selected automatically. At some point this mechanism may allow selection of other modes, such as JIT compilation.
+Not all platforms have an optimized implementation. In such cases, the "fast" interpreter is generated as a series of C stubs, and the result will be slower than the "portable" version. (When we have optimized versions for all popular architectures the naming convention will be more accurate.)
+</p>
+<p>
+If profiling is enabled or a debugger is attached, the VM switches to the "debug" interpreter. When profiling ends or the debugger disconnects, the original interpreter is resumed. (The "debug" interpreter is substantially slower, something to keep in mind when evaluating profiling data.)
+</p>
+<p>
+(These paragraphs comes from <a href="http://www.netmite.com/android/mydroid/dalvik/docs/embedded-vm-control.html">HERE</a>.)
+</p>
+
+<h3>Main Loop</h3>
+<p>
+The basic theory behind Dalvik interpreter is a big loop. In this loop, the interpreter will fetch a instruction and interpret it. The working model is some different but not far from the code below:
+</p>
+<pre>
+for(;;){
+	insn = fetch();
+	switch(insn[0]){
+		case MOVE: ...
+		case RETRUN: ...
+		...
+	}
+}
+</pre>
+<p>
+The portable version implementation is in the file <i>dalvik/vm/mterp/out/InterpC-portable.cpp</i>.
+You can find all the opcodes' implementation here.
+</p>
+<p>
+An improvement of the "big loop" is called "threaded" execution, which is used on Dalvik. The instruction fetch and dispatch are included at the end of every instruction handler. This makes the interpreter a little larger in size overall, but you get to avoid the (potentially expensive) branch back to the top of the switch statement. And this avoidance will lead to a performance improvement.
+</p>
+
+<h3>Another Way for Two-hundred </h3>
+<p>
+	In lab2, we hack the .apk file and double the result of simplecounter.
+	While in this section, we are going to use another way to achieve the same effect.
+	Instead of modifying developer's code, a more general way is to modify the Dalvik VM's code.
+</p>
+<p>
+	Your task is to hack the implementation of ADD_INT and make sure the counter's result is 200.
+</p>
+<p>
+<b>Hints:</b>
+<ul>
+<li>The most naive solution will definitely influence the whole system. Every add will double or plus one. A solution is to check the class name and method's name which will decide whether your hack is triggered or not.</li>
+<li>Always use the portable mode of Dalvik, because your modification can only work there. How to convert to portable mode? See the chapter <i>Execution Mode</i>.</li>
+<!--
+<li>Macro is complicated here</li>
+<li>"_chkdiv" is a good parameter for you to distinguish the operation ADD_INT</li>
+
+</ul>
+-->
+</p>
+<!--
+<p>
+    Add a print instruction in the initial process of Dalvik to confirm that your VM is correctly deployed.
+    You can find out how the android print works, and use "adb logcat" tools to see the result. 
+</p>
+-->
+</body>

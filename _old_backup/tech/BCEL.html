@@ -1,0 +1,234 @@
+---
+title: Counting Memory Operations in A Java Program
+layout: page
+---
+<body>
+Time: Feb.9 2014<br>
+Code: <a href="https://github.com/naizhengtan/javaInstrumentTool">https://github.com/naizhengtan/javaInstrumentTool</a><br>
+<br>
+Recently, I encountered an interesting problem from an interview<!-- from Lancaster University-->.
+The requirement is like this:
+<pre>
+"Try to figure out how many memory operations in a specific method."
+</pre>
+<h2> 1. Analyze the problem </h2>
+
+I should build a tool to solve such problem.
+In order to count the memory operations dynamically, 
+the tool should have the following PARTS:
+<ul>
+<li> Detect where the memory operations are</li>
+<li> A snippet of code to count</li>
+<li> A global counter or several decentralized counters</li>
+</ul>
+
+It seems easy in logic: just add the counter when the tool detect a memory operation.
+However, there are two challenges left:
+<ol>
+<li> How can you detect a memory operation?</li>
+<li> Where should the counter place? </li>
+</ol>
+
+<p>
+Basically, there are four levels of abstraction in such environment.
+And the tool can detect the memory operation in any layer theoratically.<br>
+-----------------<br>
+|  Application  |<br>
+-----------------<br>
+|&nbsp; &nbsp;Java VM &nbsp;  |<br>
+-----------------<br>
+|&nbsp;    OS   Kernel  &nbsp;|<br>
+-----------------<br>
+|    Hypervisor &nbsp;|<br>
+-----------------<br>
+</p>
+
+<p>
+For the <em>first challenges</em>, there are several solutions coming into my mind.
+The most straight forward way is to modifying the java virtual machine, and
+increase the counter every time when a memory operation is encountered. However,
+it is hard both in the implementation(considering JIT) and using(user have to replace
+his/her JVM). Another total transparent way is to utilize emulator or VM such as Qemu
+or KVM/XEN. However, this is also hard to achieve since such scheme will detect all the memory operations
+including the memory operations from the JVM it self(GC, JIT and so on) or OS kernel.
+There is also a solution based on hacking OS kernel. The kernel can assign all the memory pages
+to read only to get the write operations and assign all the memory pages to null to get all the read operations.
+Nevertheless, it is obviously a crazy idea.
+</p>
+
+<p>Above all, the most suitable solution should be instrumenting the memory operations at
+Java bytecode level, which will preserve the semantic of the application and eliminate the 
+noise from the JVM(JIT/GC).
+</p>
+
+<p>
+The <em>second challenge</em> is also solved by realizing to detect memory operations at Java
+bytecode level. I should maintain the counter inside the applications rather than keep it in 
+JVM/OS/Hypervisor. Dynamically inserting a field to a globally reachable class or to each of the 
+instrumented classes should both be OK.
+</p>
+
+<h2>2. Background</h2>
+<h3>Java Bytecode Instrumentation</h3>
+I use BCEL(Byte Code Engineering Library).
+
+<h3>BCEL Basic</h3>
+
+A quick and easy to follow tutorial is h<a href="http://commons.apache.org/proper/commons-bcel/manual.html">here</a>.
+
+<h2>3. Design and Implementation of the Tool</h2>
+As I described in the problem analysis, this tool should be 
+partitioned into three parts: counter adding, memory operation detecting and
+counting snippet inserting.
+
+<h3>Counter Adding</h3>
+
+<p> 
+I choose to insert decentralized counter to each classes.
+In this way, this tool can differentiate the memory operations in different calsses.
+</p>
+
+<p>
+Here is my code:</p>
+<code>
+FieldGen rc = new FieldGen(Constants.ACC_PUBLIC|Constants.ACC_STATIC, Type.INT,"memop_read_counter",cPoolGen);<br>
+FieldGen wc = new FieldGen(Constants.ACC_PUBLIC|Constants.ACC_STATIC, Type.INT,"memop_write_counter",cPoolGen);<br>
+classGen.addField(rc.getField());<br>
+classGen.addField(wc.getField());<br>
+int rindex = cPoolGen.addFieldref(classGen.getClassName(), "memop_read_counter", "I");<br>
+int windex = cPoolGen.addFieldref(classGen.getClassName(), "memop_write_counter", "I");<br>
+</code>
+
+<p>
+Variable "cPoolGen" is the ConstantPoolGen of the class you want to instrument. "classGen" 
+is the ClassGen of the class. "rindex" and "windex" are the index of the field in the constant pool,
+which will help during the counting snippet.
+</p>
+
+<h3>Memory Operation Detecting</h3>
+
+<p>
+In order to detect the memory operations in the application, you should first 
+be aware who are they. The following are the memory opcodes I find in Java specification.
+</p>
+
+<code>
+String[] instrumentOps = {"GETFIELD","PUTFIELD",
+			"AASTORE","ASTORE","BASTORE","CASTORE","DASTORE",
+			"DSTORE","FASTORE","FSTORE","IASTORE","ISTORE","LASTORE","LSTORE","SASTORE",
+			"AALOAD","ALOAD","BALOAD","CALOAD","DALOAD",
+			"DLOAD","FALOAD","FLOAD","IALOAD","ILOAD","LALOAD","LLOAD","SALOAD"
+			};
+</code>
+
+<p>
+After deciding which memory operation to instrument, we should try to find these operations
+in application.
+</p>
+
+<pre>
+MethodGen methodGen = new MethodGen(methods[i], clazz.getClassName(), cPoolGen); 
+InstructionList list = methodGen.getInstructionList();
+//search for the memory op
+InstructionFinder insf = new InstructionFinder(list);
+for(Iterator it = insf.search(pattern); it.hasNext(); ) {
+	//do instrumentation
+	...	
+}
+</pre>
+
+<p>
+In this code snippet, "for(Iterator it = insf.search(pattern); it.hasNext();)" is trying to
+find all the instructions following the "pattern". The patter is a regular expression. Here
+the pattern is like "GETFIELD | PUTFEILD | ...".
+</p>
+
+<h3>Counting Snippet Inserting</h3>
+
+<p>The goal of the counting snippet is to increase the counter without harming
+the correctness of the original application. JVM is a stack based virtual machine,
+which you should manipulate the oprand stack carefully.</p>
+
+<pre>
+private void instrumentOp(InstructionList list, InstructionHandle curop, int lv){
+	//the comments is the status of the stack
+	curop = list.append(curop, new GETSTATIC(lv)); //rcounter
+	curop = list.append(curop, new ICONST(1)); //rcounter,1
+	curop = list.append(curop, new IADD()); //rcounter+1
+	curop = list.append(curop, new PUTSTATIC(lv)); //...
+}<br>
+</pre>
+
+<p>
+The parameters for this function are:<br>
+&nbsp;	list: the list of bytecode from one certain method in class<br>
+&nbsp;	curop: the cursor pointing to the memory operation which should be instrumented<br>
+&nbsp;	lv: the counting variable index (e.g. rindx, windex)<br>
+</p>
+<p>
+The meaning of the code is:<br>
+&nbsp;(1) finding the static counting variable and push it to stack<br>
+&nbsp;(2) push 1 into the stack<br>
+&nbsp;(3) pop the first two elements on stack, add them and push back the result<br>
+&nbsp;(4) pop the first element on the stack, and set it to the static variable<br>
+</p>
+
+<h3>Classloader</h3>
+
+<p>
+With the tool above, we can successfully tracking all the memory operations in a Java program.
+However, when should we invoke our tool? Of course, we can run it to generate a new static class
+file for user to use. But this is not convenience to run manually.
+A cooler solution is to extends the classloader and dynamically rewrite the class structure in 
+memory.
+</p>
+
+<h2>4. Some Details</h2>
+
+<h3>Stack Size</h3>
+
+The maximum stack size of each method in Java is calculated by the compiler.
+However, our instrumentation may break that rule and overflow the stack.
+In this case, we should extend the maximum size of the stack.
+
+<pre>
+//reset the stack size
+methodGen.setMaxStack(methodGen.getMaxStack()+2);
+</pre>
+
+<h3>Verifier in JDK7</h3>
+
+The JDK7 uses a more strict verifier.
+Our naive way of instrumenting will break the structure of StackMap.
+A simple bypass is to fake the classes in a previous version,
+which will loose the verification during executing.
+
+<pre>
+//using low version, bypass stackMap
+classGen.setMajor(50);
+</pre>
+
+<h3>Collecting the Result</h3>
+How to collect the result from the different classes is another problem.
+I use the callback function of Java at the end of the program to collect 
+all the counters.
+<pre>
+Runtime.getRuntime().addShutdownHook(new Thread() {
+	public void run() {
+		//your code here
+	}
+});
+</pre>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+

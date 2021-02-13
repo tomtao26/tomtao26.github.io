@@ -1,0 +1,59 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>The Efficient Server Audit Problem, Deduplicated Re-execution, and the Web</TITLE>
+</HEAD>
+<BODY text="#000000" bgcolor="#FFFFFF" link="#0000EF" vlink="#51188E" alink="#FF0000">
+
+<h1>The Efficient Server Audit Problem, Deduplicated Re-execution, and the Web</h1>
+
+<p><a href=http://naizhengtan.github.io/>Cheng Tan</a>,
+<a href=https://cs.nyu.edu/~lingfan/>Lingfan Yu</a>,
+<a href=http://josh.superlegit.biz/>Joshua B. Leners</a>,
+and <a href=https://cs.nyu.edu/~mwalfish/>Michael Walfish</a><br>
+<a href=https://www.sigops.org/s/conferences/sosp/2017/>The 26th ACM Symposium on Operating Systems Principles (SOSP)</a>
+October 28-31, 2017, Shanghai, China
+<ul>
+    <li><i>Best paper award.</i></li>
+    <li> <a href="http://naizhengtan.github.io/doc/papers/efficient17tan.pdf">paper</a>,
+          <a href="https://arxiv.org/abs/1709.08501">extended version</a>,
+          <a href="https://www.sigops.org/s/conferences/sosp/2017/slides/cheng-sosp17-slides.pdf">slides</a>,
+          <a href="https://github.com/OrochiProject/orochi">code</a>
+    </li>
+</ul>
+
+<p>
+You put a program on a concurrent server, but you don't trust
+the server; later, you get a trace of the actual requests that
+the server received from its clients and the responses that
+it delivered. You separately get logs from the server; these
+are untrusted. How can you use the logs to efficiently verify
+that the responses were derived from running the program
+on the requests? This is the Efficient Server Audit Problem,
+which abstracts real-world scenarios, including running a
+web application on an untrusted provider. We give a solution
+based on several new techniques, including simultaneous
+replay and efficient verification of concurrent executions. We
+implement the solution for PHP web applications. For several
+applications, our verifier achieves 5.6--10.9x speedup versus
+simply re-executing, with <10% overhead for the server.
+</p>
+
+<p><p>
+<b>Bibtex Entry:</b>
+<p>
+<pre>
+@inproceedings{tan2017efficient,
+  author =      "Tan, Cheng and Yu, Lingfan and Leners, Joshua B and Walfish, Michael",
+  title  =      {The Efficient Server Audit Problem, Deduplicated Re-execution, and the Web},
+  booktitle =   {Proceedings of the 26th Symposium on Operating Systems Principles},
+  year =        {2017},
+  month =       {October},
+  organization= {ACM}
+}
+</p>
+
+
+</BODY>
+</HTML>
