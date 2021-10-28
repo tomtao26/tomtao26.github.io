@@ -21,6 +21,10 @@
 
 ### Journal and Conference papers
 
+* [Approximating Equilibrium under Constrained Piecewise Linear Concave Utilities with Applications to Matching Markets](https://arxiv.org/abs/2107.05700)                 
+  with Jugal Garg and László Végh       
+  to appear in SODA, 2022
+
 * [Chaos of Learning Beyond Zero-sum and Coordination via Game Decompositions](https://openreview.net/pdf?id=a3wKPZpGtCF)       
   with Yun Kuen Cheung     
   ICLR, 2021
@@ -54,9 +58,6 @@
   INFOCOM, 2013    
 
 ### Working papers
-
-* [Approximating Equilibrium under Constrained Piecewise Linear Concave Utilities with Applications to Matching Markets](https://arxiv.org/abs/2107.05700)                 
-  with Jugal Garg and László Végh
 
 * [Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)               
   with Ishan Agarwal and Richard Cole 
