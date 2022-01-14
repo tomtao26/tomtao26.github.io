@@ -23,7 +23,7 @@
 
 * [Approximating Equilibrium under Constrained Piecewise Linear Concave Utilities with Applications to Matching Markets](https://arxiv.org/abs/2107.05700)                 
   with Jugal Garg and László Végh       
-  to appear in SODA, 2022
+  SODA, 2022
 
 * [Chaos of Learning Beyond Zero-sum and Coordination via Game Decompositions](https://openreview.net/pdf?id=a3wKPZpGtCF)       
   with Yun Kuen Cheung     
