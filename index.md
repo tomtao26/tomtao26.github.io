@@ -21,6 +21,10 @@
 
 ### Journal and Conference papers
 
+* [The Evolution of Uncertainty of Learning in Games](https://openreview.net/pdf?id=Fza94Y8VS4a)       
+  with Yun Kuen Cheung and Georgios Piliouras     
+  ICLR, 2022
+
 * [Approximating Equilibrium under Constrained Piecewise Linear Concave Utilities with Applications to Matching Markets](https://arxiv.org/abs/2107.05700)                 
   with Jugal Garg and László Végh       
   SODA, 2022
