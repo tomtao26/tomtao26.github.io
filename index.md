@@ -6,7 +6,7 @@
 
   <!-- ![image-title-here](doc/info/cheng_19_NYU.jpg){: .align-right width="200"} -->
 
-  I'm a Postdoctoral Researcher in LSE, mentored/hosted by Prof. [László Végh](https://personal.lse.ac.uk/veghl/). 
+  I'm an assistant professor of [Institute for Theoretical Computer Science at SUFE](https://itcs.sufe.edu.cn/). Before joining SUFE, I was a Postdoctoral Researcher in LSE, mentored/hosted by Prof. [László Végh](https://personal.lse.ac.uk/veghl/). 
   I received my Ph.D. from NYU in 2020, advised by Prof. [Richard Cole](https://cs.nyu.edu/cole/).
   I'm interested in Algorithmic Game Theory and Optimization.
   Before coming to NYU, I received my BS degree in Computer Science from ACM Honor Class at Shanghai Jiao Tong University. 
