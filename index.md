@@ -63,6 +63,9 @@
 
 ### Working papers
 
+* [Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)               
+  with Christoph Hertrich and László A. Végh
+
 * [Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)               
   with Ishan Agarwal and Richard Cole 
 
