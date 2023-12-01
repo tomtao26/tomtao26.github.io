@@ -11,7 +11,7 @@
   I'm interested in Algorithmic Game Theory and Optimization.
   Before coming to NYU, I received my BS degree in Computer Science from ACM Honor Class at Shanghai Jiao Tong University. 
   
-  **Email:** Y.Tao16 [at] lse.ac.uk
+  **Email:** taoyixin [at] mail.shufe.edu.cn
 
 
 
@@ -21,6 +21,10 @@
 
 ### Journal and Conference papers
 
+* [Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)               
+  with Christoph Hertrich and László A. Végh     
+  Neurips, 2023
+  
 * [The Evolution of Uncertainty of Learning in Games](https://openreview.net/pdf?id=Fza94Y8VS4a)       
   with Yun Kuen Cheung and Georgios Piliouras     
   ICLR, 2022
@@ -63,8 +67,8 @@
 
 ### Working papers
 
-* [Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)               
-  with Christoph Hertrich and László A. Végh
+* [A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2106.08033)               
+  with Richard Cole, Christoph Hertrich and László A. Végh
 
 * [Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)               
   with Ishan Agarwal and Richard Cole 
