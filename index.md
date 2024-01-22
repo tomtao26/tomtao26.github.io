@@ -21,6 +21,10 @@
 
 ### Journal and Conference papers
 
+* [A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2106.08033)               
+  with Richard Cole, Christoph Hertrich and László A. Végh       
+  IPCO, 2024 (to appear)
+
 * [Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)               
   with Christoph Hertrich and László A. Végh     
   Neurips, 2023
@@ -67,8 +71,7 @@
 
 ### Working papers
 
-* [A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2106.08033)               
-  with Richard Cole, Christoph Hertrich and László A. Végh
+
 
 * [Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)               
   with Ishan Agarwal and Richard Cole 
