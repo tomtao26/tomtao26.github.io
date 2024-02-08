@@ -21,7 +21,7 @@
 
 ### Journal and Conference papers
 
-* [A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2106.08033)               
+* [A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)               
   with Richard Cole, Christoph Hertrich and László A. Végh       
   IPCO, 2024 (to appear)
 
