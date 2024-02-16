@@ -72,6 +72,8 @@
 ### Working papers
 
 
+* [Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)      
+  with Jugal Garg and László Végh    
 
 * [Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)               
   with Ishan Agarwal and Richard Cole 
