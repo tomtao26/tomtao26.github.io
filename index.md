@@ -21,9 +21,13 @@
 
 ### Journal and Conference papers
 
+* [Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)      
+  with Jugal Garg and László A. Végh    
+  SODA, 2025 (to appear)
+
 * [A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)               
   with Richard Cole, Christoph Hertrich and László A. Végh       
-  IPCO, 2024 (to appear)
+  IPCO, 2024 
 
 * [Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)               
   with Christoph Hertrich and László A. Végh     
@@ -71,9 +75,6 @@
 
 ### Working papers
 
-
-* [Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)      
-  with Jugal Garg and László Végh    
 
 * [Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)               
   with Ishan Agarwal and Richard Cole 
