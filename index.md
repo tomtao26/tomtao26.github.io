@@ -23,7 +23,7 @@
 
 * **[Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)**               
   with Christoph Hertrich and László A. Végh    
-  Accept for **Mathematics of Operations Research (2025)**   
+  Accepted for **Mathematics of Operations Research (2025)**   
   Conference Version at **Neurips, 2023**
   
 * **[Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)**      
