@@ -23,7 +23,7 @@
 
 * **[Proportional Response Dynamics in Gross Substitutes Markets](https://arxiv.org/abs/2506.02852)**      
   with Yun Kuen Cheung and Richard Cole    
-  **EC, 2025** (to appear)
+  **EC, 2025** 
 
 * **[Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)**               
   with Christoph Hertrich and László A. Végh    
