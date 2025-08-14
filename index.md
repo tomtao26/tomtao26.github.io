@@ -21,22 +21,23 @@
 
 ### Journal and Conference papers
 
+* **[A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)**               
+  with Richard Cole, Christoph Hertrich and László A. Végh      
+  Accepted for **Mathematical Programming (2025)**       
+  Conference Version at **IPCO, 2024** 
+
 * **[Proportional Response Dynamics in Gross Substitutes Markets](https://arxiv.org/abs/2506.02852)**      
   with Yun Kuen Cheung and Richard Cole    
   **EC, 2025** 
 
 * **[Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)**               
-  with Christoph Hertrich and László A. Végh    
+  with Christoph Hertrich and László A. Végh     
   Accepted for **Mathematics of Operations Research (2025)**   
   Conference Version at **Neurips, 2023**
   
 * **[Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)**      
   with Jugal Garg and László A. Végh    
   **SODA, 2025** 
-
-* **[A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)**               
-  with Richard Cole, Christoph Hertrich and László A. Végh       
-  **IPCO, 2024** 
 
 * **[The Evolution of Uncertainty of Learning in Games](https://openreview.net/pdf?id=Fza94Y8VS4a)**       
   with Yun Kuen Cheung and Georgios Piliouras     
@@ -60,7 +61,7 @@
   
 * **[Fully Asynchronous Stochastic Coordinate Descent: A Tight Lower Bound on the Parallelism Achieving Linear Speedup](https://link.springer.com/article/10.1007/s10107-020-01552-8)**        
   with Yun Kuen Cheung and Richard Cole      
-  **Mathematical Programming Series A, 2020**      
+  **Mathematical Programming, 2020**      
   
 * **[Dynamics of Distributed Updating in Fisher Markets](https://dl.acm.org/doi/10.1145/3219166.3219189)**      
   with Yun Kuen Cheung and Richard Cole      
