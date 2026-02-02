@@ -22,7 +22,7 @@
 ### Journal and Conference papers
 \* means co-first-author.
 
-* **[Fisher Meets Lindahl: A Unified Duality Framework for Market Equilibrium](https://arxiv.org/abs/2511.00847)**      
+* **[Fisher Meets Lindahl: A Unified Duality Framework for Market Equilibrium](https://arxiv.org/abs/2511.04572)**      
   with Weiqiang Zheng   
   To appear in **STOC, 2026** 
 
