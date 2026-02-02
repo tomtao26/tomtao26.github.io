@@ -22,6 +22,10 @@
 ### Journal and Conference papers
 \* means co-first-author.
 
+* **[Fisher Meets Lindahl: A Unified Duality Framework for Market Equilibrium](https://arxiv.org/abs/2511.00847)**      
+  with Weiqiang Zheng   
+  To appear in **STOC, 2026** 
+
 * **Optimal Robust Subsidy Policies for Irrational Agent in Principal-Agent MDPs**      
   with Bowen Hu    
   To appear in **ICLR, 2026** 
