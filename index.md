@@ -22,6 +22,11 @@
 ### Journal and Conference papers
 \* means co-first-author.
 
+* **[Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)**      
+  with Jugal Garg and László A. Végh    
+  Accepted for **Games and Economic Behavior (2026)**   
+  Conference Version at **SODA, 2025**
+
 * **[Fisher Meets Lindahl: A Unified Duality Framework for Market Equilibrium](https://arxiv.org/abs/2511.04572)**      
   with Weiqiang Zheng   
   To appear in **STOC, 2026** 
@@ -47,10 +52,6 @@
   with Christoph Hertrich and László A. Végh     
   Accepted for **Mathematics of Operations Research (2025)**   
   Conference Version at **Neurips, 2023**
-  
-* **[Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)**      
-  with Jugal Garg and László A. Végh    
-  **SODA, 2025** 
 
 * **[The Evolution of Uncertainty of Learning in Games](https://openreview.net/pdf?id=Fza94Y8VS4a)**       
   with Yun Kuen Cheung and Georgios Piliouras     
