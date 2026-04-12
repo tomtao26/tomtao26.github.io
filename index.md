@@ -37,7 +37,7 @@
 
 * **[Pay for The Second-Best Service: A Game-Theoretic Approach Against Dishonest LLM Providers](https://arxiv.org/abs/2511.00847)**      
   Yuhan Cao\*, Yu Wang\*, Sitong Liu, Miao Li, Yixin Tao and Tianxing He    
-  To appear in **WWW, 2026** 
+  To appear in **WWW, 2026** (oral) 
 
 * **[A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)**               
   with Richard Cole, Christoph Hertrich and László A. Végh      
