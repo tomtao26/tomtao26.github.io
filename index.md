@@ -1,110 +1,131 @@
 ---
+# Edit this file to maintain the homepage.
+# Everything below is standard Markdown plus a small YAML header for the hero/contact areas.
+layout: home
+title: "Yixin Tao | Academic Homepage"
+description: "Yixin Tao — Assistant Professor at the Institute for Theoretical Computer Science, SUFE. Research in Algorithmic Game Theory and Optimization."
+name: "Yixin Tao"
+initials: "YT"
+tagline: "Algorithmic Game Theory · Optimization"
+role: "Assistant Professor"
+affiliation: "Institute for Theoretical Computer Science, Shanghai University of Finance and Economics"
+affiliation_url: "https://itcs.sufe.edu.cn/"
+email: "taoyixin@mail.shufe.edu.cn"
+facts:
+  - label: "Fields"
+    value: "Algorithmic Game Theory, Optimization"
+  - label: "Ph.D."
+    value: "New York University, 2020"
+  - label: "Current"
+    value: "ITCS, SUFE"
+links:
+  - label: "View publications"
+    url: "#publications"
+    primary: true
+  - label: "Email"
+    url: "mailto:taoyixin@mail.shufe.edu.cn"
+    primary: false
 ---
 
-# Yixin Tao
+## About
+{: #about }
 
+I am an Assistant Professor at the [Institute for Theoretical Computer Science at SUFE](https://itcs.sufe.edu.cn/). Before joining SUFE, I was a Postdoctoral Researcher at LSE, mentored and hosted by Prof. [László Végh](https://personal.lse.ac.uk/veghl/).
 
-  <!-- ![image-title-here](doc/info/cheng_19_NYU.jpg){: .align-right width="200"} -->
+I received my Ph.D. from NYU in 2020, advised by Prof. [Richard Cole](https://cs.nyu.edu/~cole/). Before coming to NYU, I received my B.S. degree in Computer Science from the ACM Honor Class at Shanghai Jiao Tong University.
 
-  I'm an assistant professor of [Institute for Theoretical Computer Science at SUFE](https://itcs.sufe.edu.cn/). Before joining SUFE, I was a Postdoctoral Researcher in LSE, mentored/hosted by Prof. [László Végh](https://personal.lse.ac.uk/veghl/). 
-  I received my Ph.D. from NYU in 2020, advised by Prof. [Richard Cole](https://cs.nyu.edu/cole/).
-  I'm interested in Algorithmic Game Theory and Optimization.
-  Before coming to NYU, I received my BS degree in Computer Science from ACM Honor Class at Shanghai Jiao Tong University. 
-  
-  **Email:** taoyixin [at] mail.shufe.edu.cn
+## Research interests
+{: #research }
 
-
-
-
+- **Algorithmic Game Theory.** Equilibrium computation, market dynamics, auctions, and strategic behavior in economic systems.
+- **Market Equilibrium.** Fisher markets, matching markets, tâtonnement, welfare objectives, and equilibrium approximation.
+- **Optimization.** First-order methods, coordinate descent, linear programming, and convergence analysis.
 
 ## Publications
+{: #publications }
 
-### Journal and Conference papers
-\* means co-first-author.
+An asterisk (\*) denotes co-first authorship.
 
-* **[Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)**      
-  with Jugal Garg and László A. Végh    
-  Accepted for **Games and Economic Behavior (2026)**   
-  Conference Version at **SODA, 2025**
+### Journal and conference papers
 
-* **[Fisher Meets Lindahl: A Unified Duality Framework for Market Equilibrium](https://arxiv.org/abs/2511.04572)**      
-  with Weiqiang Zheng   
-  To appear in **STOC, 2026** 
+1. **[Approximating Competitive Equilibrium by Nash Welfare](https://arxiv.org/abs/2402.09994)**  
+   Jugal Garg, Yixin Tao, and László A. Végh.  
+   _Games and Economic Behavior, 2026. Conference version: SODA 2025._
 
-* **Optimal Robust Subsidy Policies for Irrational Agent in Principal-Agent MDPs**      
-  with Bowen Hu    
-  To appear in **ICLR, 2026** 
+2. **[Fisher Meets Lindahl: A Unified Duality Framework for Market Equilibrium](https://arxiv.org/abs/2511.04572)**  
+   Yixin Tao and Weiqiang Zheng.  
+   _To appear in STOC, 2026._
 
-* **[Pay for The Second-Best Service: A Game-Theoretic Approach Against Dishonest LLM Providers](https://arxiv.org/abs/2511.00847)**      
-  Yuhan Cao\*, Yu Wang\*, Sitong Liu, Miao Li, Yixin Tao and Tianxing He    
-  To appear in **WWW, 2026** (oral) 
+3. **[Optimal Robust Subsidy Policies for Irrational Agent in Principal-Agent MDPs](https://openreview.net/forum?id=ZO6Iwd3BZ7)**  
+   Bowen Hu and Yixin Tao.  
+   _To appear in ICLR, 2026._
 
-* **[A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)**               
-  with Richard Cole, Christoph Hertrich and László A. Végh      
-  Accepted for **Mathematical Programming (2025)**       
-  Conference Version at **IPCO, 2024** 
+4. **[Pay for The Second-Best Service: A Game-Theoretic Approach Against Dishonest LLM Providers](https://arxiv.org/abs/2511.00847)**  
+   Yuhan Cao\*, Yu Wang\*, Sitong Liu, Miao Li, Yixin Tao, and Tianxing He.  
+   _To appear in WWW, 2026. Oral presentation._
 
-* **[Proportional Response Dynamics in Gross Substitutes Markets](https://arxiv.org/abs/2506.02852)**      
-  with Yun Kuen Cheung and Richard Cole    
-  **EC, 2025** 
+5. **[A First Order Method for Linear Programming Parameterized by Circuit Imbalance](https://arxiv.org/abs/2311.01959)**  
+   Richard Cole, Christoph Hertrich, Yixin Tao, and László A. Végh.  
+   _Mathematical Programming, 2025. Conference version: IPCO 2024._
 
-* **[Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)**               
-  with Christoph Hertrich and László A. Végh     
-  Accepted for **Mathematics of Operations Research (2025)**   
-  Conference Version at **Neurips, 2023**
+6. **[Proportional Response Dynamics in Gross Substitutes Markets](https://arxiv.org/abs/2506.02852)**  
+   Yun Kuen Cheung, Richard Cole, and Yixin Tao.  
+   _EC, 2025._
 
-* **[The Evolution of Uncertainty of Learning in Games](https://openreview.net/pdf?id=Fza94Y8VS4a)**       
-  with Yun Kuen Cheung and Georgios Piliouras     
-  **ICLR, 2022**
+7. **[Mode Connectivity in Auction Design](https://arxiv.org/abs/2305.11005)**  
+   Christoph Hertrich, Yixin Tao, and László A. Végh.  
+   _Mathematics of Operations Research, 2025. Conference version: NeurIPS 2023._
 
-* **[Approximating Equilibrium under Constrained Piecewise Linear Concave Utilities with Applications to Matching Markets](https://arxiv.org/abs/2107.05700)**                 
-  with Jugal Garg and László Végh       
-  **SODA, 2022**
+8. **[The Evolution of Uncertainty of Learning in Games](https://openreview.net/forum?id=Fza94Y8VS4a)**  
+   Yun Kuen Cheung, Georgios Piliouras, and Yixin Tao.  
+   _ICLR, 2022._
 
-* **[Chaos of Learning Beyond Zero-sum and Coordination via Game Decompositions](https://openreview.net/pdf?id=a3wKPZpGtCF)**       
-  with Yun Kuen Cheung     
-  **ICLR, 2021**
-  
-* **[On the Existence of Pareto Efficient and Envy Free Allocations](https://www.sciencedirect.com/science/article/pii/S0022053121000247)**     
-  with Richard Cole     
-  **Journal of Economic Theory, 2021**     
-  
-* **[Parallel Stochastic Asynchronous Coordinate Descent: Tight Bounds on the Possible Parallelism](https://epubs.siam.org/doi/abs/10.1137/19M129574X)**     
-  with Yun Kuen Cheung and Richard Cole    
-  **SIAM Journal on Optimization, 2021**    
-  
-* **[Fully Asynchronous Stochastic Coordinate Descent: A Tight Lower Bound on the Parallelism Achieving Linear Speedup](https://link.springer.com/article/10.1007/s10107-020-01552-8)**        
-  with Yun Kuen Cheung and Richard Cole      
-  **Mathematical Programming, 2020**      
-  
-* **[Dynamics of Distributed Updating in Fisher Markets](https://dl.acm.org/doi/10.1145/3219166.3219189)**      
-  with Yun Kuen Cheung and Richard Cole      
-  **EC, 2018**       
-  
-* **[Large Market Games with Near Optimal Efficiency](https://dl.acm.org/doi/10.1145/2940716.2940720)**      
-  with Richard Cole       
-  **EC, 2016**      
-  
-* **[Generalized Second Price Auction with Probabilistic Broad Match](https://dl.acm.org/doi/10.1145/2600057.2602828)**       
-  with Wei Chen, Di He, Tie-Yan Liu, Tao Qin and Liwei Wang       
-  **EC, 2014**    
-  
-* **[Spring: A Strategy-proof and Privacy Preserving Spectrum Auction Mechanism](https://ieeexplore.ieee.org/document/6566870)**     
-  Qianyi Huang, Yixin Tao and Fan Wu     
-  **INFOCOM, 2013**    
+9. **[Approximating Equilibrium under Constrained Piecewise Linear Concave Utilities with Applications to Matching Markets](https://arxiv.org/abs/2107.05700)**  
+   Jugal Garg, Yixin Tao, and László Végh.  
+   _SODA, 2022._
+
+10. **[Chaos of Learning Beyond Zero-sum and Coordination via Game Decompositions](https://openreview.net/forum?id=a3wKPZpGtCF)**  
+    Yun Kuen Cheung and Yixin Tao.  
+    _ICLR, 2021._
+
+11. **[On the Existence of Pareto Efficient and Envy Free Allocations](https://www.sciencedirect.com/science/article/abs/pii/S0022053121000247)**  
+    Richard Cole and Yixin Tao.  
+    _Journal of Economic Theory, 2021._
+
+12. **[Parallel Stochastic Asynchronous Coordinate Descent: Tight Bounds on the Possible Parallelism](https://epubs.siam.org/doi/10.1137/19M129574X)**  
+    Yun Kuen Cheung, Richard Cole, and Yixin Tao.  
+    _SIAM Journal on Optimization, 2021._
+
+13. **[Fully Asynchronous Stochastic Coordinate Descent: A Tight Lower Bound on the Parallelism Achieving Linear Speedup](https://link.springer.com/article/10.1007/s10107-020-01552-8)**  
+    Yun Kuen Cheung, Richard Cole, and Yixin Tao.  
+    _Mathematical Programming, 2020._
+
+14. **[Dynamics of Distributed Updating in Fisher Markets](https://dl.acm.org/doi/10.1145/3219166.3219189)**  
+    Yun Kuen Cheung, Richard Cole, and Yixin Tao.  
+    _EC, 2018._
+
+15. **[Large Market Games with Near Optimal Efficiency](https://dl.acm.org/doi/10.1145/2940716.2940720)**  
+    Richard Cole and Yixin Tao.  
+    _EC, 2016._
+
+16. **[Generalized Second Price Auction with Probabilistic Broad Match](https://dl.acm.org/doi/10.1145/2600057.2602828)**  
+    Wei Chen, Di He, Tie-Yan Liu, Tao Qin, Yixin Tao, and Liwei Wang.  
+    _EC, 2014._
+
+17. **[Spring: A Strategy-proof and Privacy Preserving Spectrum Auction Mechanism](https://doi.org/10.1109/INFCOM.2013.6566870)**  
+    Qianyi Huang, Yixin Tao, and Fan Wu.  
+    _INFOCOM, 2013._
 
 ### Working papers
 
+1. **[Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)**  
+   Ishan Agarwal, Richard Cole, and Yixin Tao.  
+   _Working paper._
 
-* **[Selecting a Match: Exploration vs Decision](https://arxiv.org/abs/2106.08033)**               
-  with Ishan Agarwal and Richard Cole 
+2. **[Balancing the Robustness and Convergence of Tatonnement](https://arxiv.org/abs/1908.00844)**  
+   Richard Cole and Yixin Tao.  
+   _Working paper._
 
-* **[Balancing the Robustness and Convergence of Tatonnement](https://arxiv.org/abs/1908.00844)**       
-  with Richard Cole 
-  
-* **[An Analysis of Asynchronous Stochastic Accelerated Coordinate Descent](https://arxiv.org/abs/1808.05156)**     
-  with Richard Cole    
-  
-<br>
-
-
+3. **[An Analysis of Asynchronous Stochastic Accelerated Coordinate Descent](https://arxiv.org/abs/1808.05156)**  
+   Richard Cole and Yixin Tao.  
+   _Working paper._
