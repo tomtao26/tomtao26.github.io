@@ -1,0 +1,106 @@
+---
+layout: page
+title: "Section 1: Build Android and Inside Dalvik"
+---
+<!--
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Sec 1: Build Android and Inside Dalvik</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="labs.css" 
+type=text/css rel=stylesheet>
+-->
+<body>
+
+
+<h2>Part 1: BUILD THE SYSTEM FROM SCRATCH</h2>
+
+In this section, you will learn how to build Android environment from scratch.
+Follow the instructions below, you will build your own executable Android operating system.
+
+<h3>Build the Environment</h3>
+<p>
+Your first task is to download the source code of android, compile it and run it in an emulator. <br> 
+<a href="http://source.android.com/index.html">Here</a> is the official tutorial. 
+<a href="http://developer.android.com/index.html">The developer website</a> will give you more knowledge about android.
+</p>
+
+<p>
+In this section, we will briefly introduce the process of the Android Environment building and give you some hints.
+</p>
+<ol>
+<li> <b> Build the environment</b> <br>
+ 		Some required packages should be installed and some environment variables should be configed in this step.
+ 		However, don't worry about that, it's easy. Google do well in this part.
+ 		Tutorial is <a href="http://source.android.com/source/initializing.html">here</a>. <br>
+ 		<i>Hint:</i> 
+ 		<ul>
+ 			<li>Ubuntu is highly recommended.</li>
+ 			<li> <i>Never</i> use Virtual Machine(VMware/Kvm/Xen). Otherwise, it will be too slow to compile Android from source code.
+ 		</ul>
+</li>
+<br>
+<li>
+	<b>Download the source code of android</b> <br>
+    This process is also easy and manifest. Just follow the <a href="http://source.android.com/source/downloading.html ">tutorial</a> on Android official sites.<br>
+    <i>Hint:</i> 
+    <ul>
+    	<li>It takes a long time for your downloading which is about several hours. A good option is going to sleep when you entered the download command.</li>
+    	<li>When you find your download trying failed, it is not the end of the world. Just try "repo sync" again.</li>
+    </ul>
+</li>
+<br>
+<li>
+ <b>Build the Android</b><br>
+    After a long and tough downloading procedure, you can build the whole android now! 
+    Follow the steps in this <a href="http://source.android.com/source/building.html">page</a>.<br>
+    <i>Hint:</i> 
+    	<ul>
+    	<li>Use command "make -j N" to build the system which N is your core number.</li>
+    	</ul>
+</li>
+<br>
+<li>
+<b>Run the Emulator</b><br>
+ <i>Congratulation!!</i> Finally, you have made it. :)
+     Run the command "emulator" to find out whether your effort works properly.
+</li>
+</ol>
+
+<h3>Preliminary Hacking: Hack Initial Logo </h3>
+<p>
+Now, we have our own Android which is running on emulator. It's time to do something interesting. 
+In order to verify our compiling process, we are going to hack the initial logo to "Hackdroid". 
+This game is pretty easy to cover just follow the above steps:
+<ol>
+<li> Download the initial logo <a href="initlogo.rle">here</a>. </li>
+<li> Copy the file to the folder path/to/android/<b>out/target/product/generic/root/</b>. </li>
+<li> Rebuild Android and run emulator. You can see the figure below.</li>
+</ol>
+<a><img src="hack.png" alt="hackdroid boot figure"></a>
+</p>
+
+More information about Android boot image is availiable <a href="http://android-dls.com/wiki/index.php?title=HOWTO:_Unpack%2C_Edit%2C_and_Re-Pack_Boot_Images">here</a>.<br>
+(The boot logo comes from <a href="http://forum.xda-developers.com/showthread.php?t=443431">this thread</a> on xdadevelopers.)
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

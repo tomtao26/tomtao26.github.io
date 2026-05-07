@@ -1,0 +1,96 @@
+---
+layout: page
+title: "Section 2: Dalvik Thread Model"
+---
+<!--
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Section 2: Dalvik Thread Model</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="labs.css" 
+type=text/css rel=stylesheet>
+-->
+
+<body>
+
+<h1>Part 1: THREAD NOTIONS IN DIFFERENT ABSTRACTIONS</h1>
+
+<p>Thread is an important concept in nowadays programming model. 
+Java uses its own thread model to create and synchronized all the behaviors of the threads. The java's official guide is <a href="http://docs.oracle.com/javase/tutorial/essential/concurrency/">HERE</a>, and a quick tutorial is <a href="http://www.vogella.com/articles/JavaConcurrency/article.html">HERE</a>.</p>
+
+<p>In short, java thread model has the following features:</p>
+<ul>
+<li> A language level thread abstraction</li>
+<li> Syntax "synchronized" as the synchronization primitive </li>
+<li> Every object has a lock field, which means all the object can be used as a lock</li>
+<li> Library based atomic operations </li>
+</ul>
+
+<p> In this section, implementation of the thread model in different level will be discussed.
+General speaking, there are four level of abstractions of threads top-down:
+(1) Language level (2) Virtual Machine level (3) library level (4) kernel level.
+</p>
+
+<h2> Thread in Java:</h2>
+<p>
+The main class used by developers is Thread whose source code is in the file libcore/luni/src/main/java/java/lang/Thread.java.
+However, if you see deep into the code,
+this is only a wrapper for the real thread. 
+It abstracts some interfaces for developers.
+Another important class is called VMThread whose function is obvious from its name. 
+It manages the thread structure in virtual machine through JNI bridge.
+</p>
+
+<h2> Thread in Dalvik:</h2>
+<P>
+As described above, class VMThread is the thread's delegate in Java level.
+It jump into c++ code by calling the native function in file dalvik/vm/native/java_lang_VMThread.cpp.
+This file needs your special attention, because it is the door to the world of Dalvik threads.
+</P>
+<p>
+The data structure is alway the first part of code you should understand.
+The thread's data structure is defined in head file dalvik/vm/Thread.h.
+It seems a little complicated. Nevertheless, the comments here give you a lot of help to understand 
+the function of each field. After brief reading of the structure, you should start reading the code 
+at the function dvmCreateInterpThread(...) in file dalvik/vm/Thread.cpp. 
+This is the entry of creating a virtual machine thread. 
+In this function, a new vm thread will be created and linked with a new pthread thread.
+After the initialization, it will directly call the run() overrided by its child.
+</p>
+<p>
+When you reading the code, try to answer following questions in mind:
+<ul>
+	<li>When does the code leave the c++ and return to the Java world?</li>
+	<li>Where are the thread in Dalvik and a pthread linked together?</li>
+</ul>
+</p>
+
+<h2> Thread in pthread and kernel: </h2>
+<p>
+The pthread library is implemented in the bionic project.
+Most of the code which may interest you is placed at file bionic/libc/bionic/pthread.c.
+The data structure of thread in pthread library is called pthread_internal_t defined in file bionic/libc/bionic/pthread_internal.h.
+Pthread library uses system call clone to fork a thread. 
+Thread is very similar to the conception of process nowadays except they do not have their own address space.
+All the threads in the same process share the memory addresses with each other.
+This can be bot good (easy programming) and bad (heavy contention on memory layout data structure).
+</p>
+<p>
+We do not mention the structure of thread in kernel here, because default source code of Android do not include such files.
+While many articles talked about the design and implement of thread structure in kernel.
+It is pretty convenient to find them.
+</p>
+<p>
+Above all, from this perspective, all the abstractions in language, virtual machine and library are all wrappers of thread entity in kernel.
+However, this is not always the case. In the preliminary version of JVM, virtual machine maintains its own threads 
+in its own process and does all the scheduling itself. It seems no good other than increasing complexity to do this.
+However, there are some reasons for this.
+Maintaining the threads in higher level have some performance benefit in a situation with huge amount of threads.
+This is because creating threads and scheduling them in kernel is not free. 
+Trapping into kernel is often an unwelcoming behavior. 
+And the memory contention is another reason to keep thread more lightweight.
+For other language, we can also see the feature similar to thread but more simple, such as coroutine.
+And this is maintained inside virtual machine most of the time, such as Lua. 
+</p>
+
+</body>

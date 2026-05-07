@@ -1,0 +1,41 @@
+---
+layout: page
+title: "Section 2: Dalvik Thread Model"
+---
+<!--
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Section 2: Dalvik Thread Model</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="labs.css" 
+type=text/css rel=stylesheet>
+-->
+<body>
+
+<h2>Part 0: UNDERSTANDING NON-DETERMINISM OF MULTITHREADING</h2>
+<p>
+Our ultimate goal is to build a replayable Dalvik which can produce the same result as record execution as many times as we want. It is easy to do in a sequential program the only need of which is to record all the non-determinisms coming from environment, such as time or random number. However, this is not the case in nowadays multi-thread programs. Because of the interleaving of the threads, program can behave differently even if the environment variables are the same.</p>
+
+<p>Take the following code as an example: </p>
+<code>
+<p>
+counter = 1;
+</p>
+thread1:</br> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;void add()
+	{
+		counter++;
+	}
+</p>
+thread2:</br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;void mul()
+{counter *= 2;}
+</p>
+</code>
+<p>When the above code is running, there are two scenarios: function add() run first and then mul() or vice versa. In the first condition, the counter value is (1+1)*2=4, while in the latter condition, the answer will be 1*2+1=3. So different interleaving will cause different result in a multi-thread environment.</p>
+
+<p>In this lab, we will go inside thread model of Dalvik and design a way to mapping the threads between record and replay.</p>
+
+
+<p>In the follwing of our lab, we will use a app called inc-mul-counter as our benchmark which can download <a href="inc-mul-counter.apk">HERE</a>. In this app, there are two group of threads. Each group contains several threads doing the same work. One group is called increase group who will add one to a global counter. The other group is called multiply group. The function of the threads in it is multiply the counter by 2. All the operations to the counter are sequentialized by the same lock, which means there is no data-race.</p>
+
+</body>

@@ -1,99 +1,22 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title | default: site.title }}</title>
-    <meta name="description" content="{{ page.hero_summary | escape }}">
-    <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div class="container topbar-inner">
-          <a class="brand" href="#top">
-            <span class="brand-mark">{{ page.name | slice: 0, 1 }}{{ page.name | split: ' ' | last | slice: 0, 1 }}</span>
-            <span class="brand-text">{{ page.name }}</span>
-          </a>
-          <nav class="nav" id="site-nav">
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#publications">Publications</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <button class="menu-btn" aria-label="Open menu" id="menu-btn">☰</button>
-        </div>
-      </header>
+---
+layout: default
+---
 
-      <main id="top">
-        <section class="hero container">
-          <div class="hero-grid">
-            <div class="hero-copy">
-              <p class="eyebrow">Academic Homepage</p>
-              <h1>{{ page.name }}</h1>
-              <p class="hero-role">{{ page.role }} · {{ page.affiliation }}</p>
-              <p class="hero-summary">{{ page.hero_summary }}</p>
+<div class="home">
 
-              {% if page.research_tags %}
-              <div class="tag-row">
-                {% for tag in page.research_tags %}
-                <span class="tag">{{ tag }}</span>
-                {% endfor %}
-              </div>
-              {% endif %}
+  {{ content }}
 
-              {% if page.links %}
-              <div class="action-row">
-                {% for item in page.links %}
-                <a class="button {% if forloop.first %}button-primary{% else %}button-secondary{% endif %}" href="{{ item.url }}">{{ item.label }}</a>
-                {% endfor %}
-              </div>
-              {% endif %}
-            </div>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
 
-            <aside class="profile-card">
-              <div class="avatar">{{ page.name | slice: 0, 1 }}{{ page.name | split: ' ' | last | slice: 0, 1 }}</div>
-              <dl class="quick-facts">
-                <div>
-                  <dt>Position</dt>
-                  <dd>{{ page.role }}</dd>
-                </div>
-                <div>
-                  <dt>Email</dt>
-                  <dd><a href="mailto:{{ page.email }}">{{ page.email }}</a></dd>
-                </div>
-                <div>
-                  <dt>Affiliation</dt>
-                  <dd>{{ page.affiliation }}</dd>
-                </div>
-                <div>
-                  <dt>Location</dt>
-                  <dd>{{ page.location }}</dd>
-                </div>
-              </dl>
-            </aside>
-          </div>
-        </section>
+        <h2>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
 
-        <section class="container utility-row">
-          <div class="search-card">
-            <label for="pub-search">Search publications</label>
-            <input id="pub-search" type="search" placeholder="Search by title, author, venue, or keyword">
-          </div>
-        </section>
-
-        <section class="container">
-          <article class="content auto-sectionize" id="content-root">
-            {{ content }}
-          </article>
-        </section>
-      </main>
-
-      <footer class="container footer">
-        <p>Built for easy Markdown maintenance with GitHub Pages.</p>
-      </footer>
-    </div>
-
-    <script src="{{ '/assets/script.js' | relative_url }}"></script>
-  </body>
-</html>
+</div>
