@@ -1,13 +1,6 @@
 title: Yixin Tao
-description: Academic homepage for Yixin Tao, Assistant Professor at ITCS, SUFE.
-url: "https://tomtao26.github.io"
-baseurl: ""
 markdown: kramdown
 kramdown:
   input: GFM
-  hard_wrap: false
+permalink: pretty
 plugins: []
-exclude:
-  - README.md
-  - Gemfile
-  - Gemfile.lock
