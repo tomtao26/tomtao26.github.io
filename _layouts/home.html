@@ -1,22 +1,172 @@
 ---
 layout: default
 ---
+{% assign profile = page.profile %}
 
-<div class="home">
+<header class="site-header" role="banner">
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="#about">About</a>
+    <a href="#publications">Publications</a>
+    {% if page.working_papers %}<a href="#working-papers">Working Papers</a>{% endif %}
+  </nav>
+</header>
 
-  {{ content }}
+<main id="content" class="home-page academic-layout" aria-label="Content">
+  <aside class="profile-sidebar" aria-label="Profile">
+    <section class="profile-card">
+      <div class="profile-card__identity">
+        {% if profile.kicker %}<p class="eyebrow">{{ profile.kicker }}</p>{% endif %}
+        <h1 id="hero-title">{{ profile.name | default: site.title }}</h1>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        {% if profile.role or profile.affiliation %}
+          <div class="profile-role">
+            {% if profile.role %}<p class="profile-role__title">{{ profile.role }}</p>{% endif %}
+            {% if profile.affiliation %}
+              <p class="profile-role__affiliation">
+                {% if profile.affiliation_url %}
+                  <a href="{{ profile.affiliation_url }}"{% if profile.affiliation_url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ profile.affiliation }}</a>
+                {% else %}
+                  {{ profile.affiliation }}
+                {% endif %}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+      {% if page.research_interests %}
+        <div class="profile-section">
+          <h2 class="profile-section__title">Research Areas</h2>
+          <ul class="research-list" aria-label="Research interests">
+            {% for interest in page.research_interests %}
+              <li>{{ interest }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
 
-</div>
+      {% if page.contact %}
+        <div class="profile-section">
+          <h2 class="profile-section__title">Contact</h2>
+          <dl class="contact-list">
+            {% for item in page.contact %}
+              <div class="contact-item{% unless item.label %} contact-item--value-only{% endunless %}">
+                {% if item.label %}<dt>{{ item.label }}</dt>{% endif %}
+                <dd>{{ item.value }}</dd>
+              </div>
+            {% endfor %}
+          </dl>
+        </div>
+      {% endif %}
+    </section>
+  </aside>
+
+  <div class="content-column">
+    <section id="about" class="hero section-block section-block--first" aria-labelledby="about-title">
+      <div class="section-heading">
+        <h2 id="about-title">About</h2>
+      </div>
+
+      {% if profile.bio %}
+        <div class="hero__bio prose">
+          {{ profile.bio | markdownify }}
+        </div>
+      {% endif %}
+    </section>
+
+  {% if page.publications %}
+    <section id="publications" class="section-block" aria-labelledby="publications-title">
+      <div class="section-heading">
+        <h2 id="publications-title">Publications</h2>
+        {% if page.publication_note %}
+          <div class="section-note prose">{{ page.publication_note | markdownify }}</div>
+        {% endif %}
+      </div>
+
+      {% assign current_year = '' %}
+      <ol class="publication-list publication-list--grouped">
+        {% for paper in page.publications %}
+          {% if paper.year != current_year %}
+            {% assign current_year = paper.year %}
+            <li class="publication-year">{{ current_year }}</li>
+          {% endif %}
+          <li class="publication-item publication-item--grouped">
+            <div class="publication-body">
+              <h3>
+                {% if paper.url %}
+                  <a href="{{ paper.url }}"{% if paper.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ paper.title }}</a>
+                {% else %}
+                  {{ paper.title }}
+                {% endif %}
+              </h3>
+
+              {% if paper.authors %}
+                <p class="publication-authors">
+                  {% if paper.author_prefix %}{{ paper.author_prefix }} {% endif %}{{ paper.authors }}
+                </p>
+              {% endif %}
+
+              {% if paper.venue or paper.year %}
+                <p class="publication-venue"><strong>{% if paper.venue %}{{ paper.venue }}{% endif %}{% if paper.year %}{% if paper.venue %} {% endif %}({{ paper.year }}){% endif %}</strong></p>
+              {% endif %}
+
+              {% if paper.conference_version or paper.note %}
+                <div class="publication-detail">
+                  {% if paper.conference_version %}<span>Conference version: <strong>{{ paper.conference_version }}</strong></span>{% endif %}
+                  {% if paper.note %}<span>{{ paper.note | markdownify | strip_html }}</span>{% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
+
+  {% if page.working_papers %}
+    <section id="working-papers" class="section-block" aria-labelledby="working-papers-title">
+      <div class="section-heading">
+        <h2 id="working-papers-title">Working papers</h2>
+      </div>
+
+      <ol class="publication-list publication-list--working">
+        {% for paper in page.working_papers %}
+          <li class="publication-item">
+            <div class="publication-meta publication-meta--working">
+              <strong>Working paper</strong>
+            </div>
+            <div class="publication-body">
+              <h3>
+                {% if paper.url %}
+                  <a href="{{ paper.url }}"{% if paper.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ paper.title }}</a>
+                {% else %}
+                  {{ paper.title }}
+                {% endif %}
+              </h3>
+              {% if paper.authors %}
+                <p class="publication-authors">
+                  {% if paper.author_prefix %}{{ paper.author_prefix }} {% endif %}{{ paper.authors }}
+                </p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
+
+  {% assign extra_content = content | strip %}
+  {% if extra_content != '' %}
+    <section class="section-block prose">
+      {{ content }}
+    </section>
+  {% endif %}
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>
+    {% if page.last_updated %}Last updated: {{ page.last_updated }}.{% endif %}
+    © {{ site.time | date: "%Y" }} {{ profile.name | default: site.title }}.
+  </p>
+</footer>
