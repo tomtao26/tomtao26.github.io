@@ -2,7 +2,7 @@
 layout: home
 title: Yixin Tao
 description: "Yixin Tao's academic homepage"
-last_updated: "April 2026"
+last_updated: "June 2026"
 
 # Maintenance note:
 # Edit this file to update the homepage content. The layout and styles are reusable;
@@ -182,6 +182,11 @@ publications:
     year: "2013"
 
 working_papers:
+  - title: "Property-Rights Withdrawal in Aggregate Allocation"
+    url: "/WIR.pdf"
+    author_prefix: "with"
+    authors: "Xin Cheng and Weiqiang Zheng"
+
   - title: "Selecting a Match: Exploration vs Decision"
     url: "https://arxiv.org/abs/2106.08033"
     author_prefix: "with"
