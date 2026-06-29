@@ -45,6 +45,21 @@ highlights:
 publication_note: "An asterisk (*) indicates co-first authorship."
 
 publications:
+
+  - title: "Pricing with a Hidden Sample"
+    url: "https://arxiv.org/pdf/2602.18038"
+    author_prefix: "with"
+    authors: "Zhihao Gavin Tang and Shixin Wang"
+    status: "To appear"
+    venue: "EC"
+    year: "2026"
+
+  - title: " Two-Stage Auctions with Bid Refinement for Online Advertising"
+    authors: "Yidan Xing, Rui Guo, Yixin Tao, Dagui Chen, Zhenzhe Zheng, Jian Xu and Fan Wu"
+    status: "To appear"
+    venue: "KDD"
+    year: "2026"
+   
   - title: "Approximating Competitive Equilibrium by Nash Welfare"
     url: "https://arxiv.org/abs/2402.09994"
     author_prefix: "with"
