@@ -198,7 +198,6 @@ publications:
 
 working_papers:
   - title: "Property-Rights Withdrawal in Aggregate Allocation"
-    url: "/WIR.pdf"
     author_prefix: "with"
     authors: "Xin Cheng and Weiqiang Zheng"
 
