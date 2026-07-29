@@ -46,6 +46,13 @@ publication_note: "An asterisk (*) indicates co-first authorship."
 
 publications:
 
+  - title: "俱乐部物品公平分配的模型与算法"
+    author_prefix: "with"
+    authors: "Shengxin Liu, Zhengyang Liu and Biaoshuai Tao"
+    status: "To appear"
+    venue: "CCF全国理论计算机科学学术年会"
+    year: "2026"
+
   - title: "Pricing with a Hidden Sample"
     url: "https://arxiv.org/pdf/2602.18038"
     author_prefix: "with"
